@@ -24,7 +24,6 @@ app.post("/users/:username/:name/:age", function(req, res){
 // Example: http://<server_IP>/users/johndoe123
 app.get('/users/:username', function(req, res){
   client.get("username:" + req.params.username, function(err, reply){
-    var r = JSON.parse(reply);
     res.send(reply);
   })
 })
