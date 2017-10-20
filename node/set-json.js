@@ -1,11 +1,12 @@
-var redis = require("redis"),
-    client = redis.createClient();
+var redis = require("redis")
+var client = redis.createClient();
 
+// Error handler
 client.on("error", function (err) {
     console.log("Error " + err);
 });
 
-
+// Create JSON payload
 var serverDetails = JSON.stringify({
   "CPU":"Intel",
   "Brand": "IBM",
@@ -13,8 +14,10 @@ var serverDetails = JSON.stringify({
   "IP": "192.168.1.1"
 });
 
+// Set server:server1 (server:<server_name>), and add JSON payload as content
 client.set("server:server1", serverDetails);
 
+// Get server:server1 JSON payload
 client.get("server:server1", function(err, reply){
   var r = JSON.parse(reply);
   console.log(r.CPU);
